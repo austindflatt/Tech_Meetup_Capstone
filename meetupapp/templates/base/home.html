@@ -1,1 +1,27 @@
-<h1>Hello World</h1>
+{% extends 'base/main.html' %}
+{% block title %} devConnect {% endblock %}
+{% load static %}
+{% block content %}
+
+<br/>
+<h1>Latest Meetups</h1>
+<div class="row justify-content-center">
+    {% for meetup in meetups %}
+<div class="col-sm-3 col-md-3 g-4">
+    <div class="card" style="width: 18rem;box-shadow: rgb(0 0 0 / 22%) 0px 0px 10px;border: 0px solid rgba(0,0,0,.125);">
+  <img src="{{meetup.thumbnail.url}}" class="card-img-top" style="height: 171px;" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{meetup.title}}</h5>
+    <p class="card-text">{{meetup.description}}</p>
+      <p class="card-text">75 people are going</p>
+      <p class="card-text"><span class="badge bg-dark">{{meetup.topic}}</span></p>
+    <a href="{% url 'event' meetup.id %}" class="btn btn-primary">View details</a>
+  </div>
+</div>
+</div>
+    {% empty %}
+    <h3>No meetups have been added yet</h3>
+    {% endfor %}
+</div>
+
+{% endblock content %}
