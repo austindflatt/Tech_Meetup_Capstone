@@ -4,6 +4,9 @@
 {% block content %}
 
 <br/>
+{% for message in messages %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endfor %}
 <h1>Latest Meetups</h1>
 <div class="row justify-content-center">
     {% for meetup in meetups %}

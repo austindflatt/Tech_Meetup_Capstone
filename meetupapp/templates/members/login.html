@@ -2,9 +2,20 @@
 {% block title %} Login - devConnect {% endblock %}
 {% load static %}
 {% block content %}
-
 <h3>Login page</h3>
-
-
-
+{% for message in messages %}
+<div class="alert alert-danger" role="alert">{{message}}</div>
+{% endfor %}
+<form method="POST" action="">
+   {% csrf_token %}
+   <div class="mb-3">
+      <label for="Username" class="form-label">Username</label>
+      <input type="text" class="form-control" name="username">
+   </div>
+   <div class="mb-3">
+      <label for="Password" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control">
+   </div>
+   <button type="submit" class="btn btn-primary">Log In</button>
+</form>
 {% endblock content %}
