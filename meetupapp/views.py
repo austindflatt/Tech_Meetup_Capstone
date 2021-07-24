@@ -1,14 +1,38 @@
 from django.shortcuts import render
+from django.contrib import auth
 from . models import Meetup
-from .forms import MeetupForm
+from .forms import CreateUserForm, MeetupForm
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
+
+
+def registerPage(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {'form':form}
+    return render(request, 'members/register.html', context)
+
+
+def loginPage(request):
+    context = {}
+    return render(request, 'members/login.html', context)
+
+
+def logout(request):
+    auth.logout(request)
+    return render(request,'base/home.html')
 
 
 def homePage(request):
     meetups = Meetup.objects.all()
     context = {'meetups': meetups}
     return render(request, 'base/home.html', context)
+
 
 
 def meetupPage(request, pk):
