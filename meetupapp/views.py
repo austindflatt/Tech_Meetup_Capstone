@@ -11,35 +11,42 @@ from django.contrib import messages
 
 
 def registerPage(request):
-    form = CreateUserForm()
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
 
-    if request.method == 'POST':
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + user)
+        form = CreateUserForm()
 
-            return redirect('home')
-    context = {'form':form}
-    return render(request, 'members/register.html', context)
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get('username')
+                messages.success(request, 'Account was created for ' + user)
+
+                return redirect('home')
+        context = {'form':form}
+        return render(request, 'members/register.html', context)
 
 
 def loginPage(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
+            user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect('home')
-        else:
-            messages.info(request, 'Username or Password is incorrect')
-            return redirect('login')
-    context = {}
-    return render(request, 'members/login.html', context)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.info(request, 'Username or Password is incorrect')
+                return redirect('login')
+        context = {}
+        return render(request, 'members/login.html', context)
 
 
 def logout(request):
