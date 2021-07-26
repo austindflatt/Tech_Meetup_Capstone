@@ -71,6 +71,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'techmeetup.wsgi.application'
 
+DATE_FORMAT = '%B %d, %Y'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

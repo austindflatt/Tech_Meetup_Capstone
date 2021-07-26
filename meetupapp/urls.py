@@ -11,4 +11,6 @@ urlpatterns = [
 
     path('events/<str:pk>/', views.meetupPage, name="event"),
     path('add-event/', views.addEvent, name="add-event"),
+    path('edit-event/<str:pk>/', views.editEvent, name="edit-event"),
+    path('delete-event/<str:pk>/', views.deleteEvent, name="delete-event"),
 ]

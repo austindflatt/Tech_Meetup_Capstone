@@ -37,6 +37,7 @@ def loginPage(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
+                messages.success(request, 'You have successfully logged in')
                 return redirect('home')
             else:
                 messages.info(request, 'Username or Password is incorrect')
@@ -47,7 +48,8 @@ def loginPage(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('login')
+    messages.success(request, 'You are now logged out')
+    return redirect('home')
 
 
 def homePage(request):
@@ -73,3 +75,27 @@ def addEvent(request):
             return redirect('home')
     context = {'form': form}
     return render(request, 'base/meetup_form.html', context)
+
+
+@login_required(login_url='login')
+def editEvent(request, pk):
+    event = Meetup.objects.get(id=pk)
+    form = MeetupForm(instance=event)
+    if request.method == 'POST':
+        form = MeetupForm(request.POST, request.FILES, instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    context = {'form': form}
+    return render(request, 'base/meetup_form.html', context)
+
+
+@login_required(login_url='login')
+def deleteEvent(request, pk):
+    event = Meetup.objects.get(id=pk)
+    event.delete()
+    all_events = Meetup.objects.all()
+    context = {
+        'all_events': all_events
+    }
+    return redirect('home')

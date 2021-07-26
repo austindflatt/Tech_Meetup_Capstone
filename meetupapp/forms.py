@@ -14,13 +14,22 @@ class CreateUserForm(UserCreationForm):
 class MeetupForm(ModelForm):
     class Meta:
         model = Meetup
-        fields = ['title', 'thumbnail', 'topic', 'description', 'location']
+        fields = ['title', 'thumbnail', 'topic', 'description', 'location', 'meetup_date']
 
     def __init__(self, *args, **kwargs):
         super(MeetupForm, self).__init__(*args, **kwargs)
         self.fields['title'].widget.attrs.update(
             {'class': 'form-control'}
         )
+        self.fields['thumbnail'].widget.attrs.update(
+            {'class': 'form-control'}
+        )
+        self.fields['topic'].widget.attrs.update(
+            {'class': 'form-control'}
+        )
         self.fields['description'].widget.attrs.update(
+            {'class': 'form-control'}
+        )
+        self.fields['location'].widget.attrs.update(
             {'class': 'form-control'}
         )

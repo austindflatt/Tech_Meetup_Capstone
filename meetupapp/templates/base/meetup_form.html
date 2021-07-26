@@ -3,7 +3,6 @@
 {% load static %}
 {% block content %}
 
-{% if user.is_superuser %}
             <h1 class="splash-title">Add Event 📍</h1>
             <form method="POST" enctype="multipart/form-data" class="add-content">
               {% csrf_token %}
@@ -14,8 +13,5 @@
               <br>
               <input class="button button-submit" type="submit" value="Create Project">
             </form>
-            {% else %}
-            <h1>You are not authorized to add a project 🛑</h1>
-            {% endif %}
 
 {% endblock content %}

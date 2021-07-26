@@ -5,8 +5,19 @@
 
 <h3>Event page</h3>
 
+<a href="{% url 'edit-event' meetups.id %}">Edit</a>
+<a href="{% url 'delete-event' meetups.id %}">Delete Project</a>
 
-<h1>{{meetup.title}}</h1>
+
+<h1>{{meetups.title}}</h1>
+<img src="{{meetups.thumbnail.url}}">
+<p>Topic being discussed: {{meetups.topic}}</p>
+<p>{{meetups.description}}</p>
+<p>This meetup is on: {{meetups.meetup_date}}</p>
+<p>Location: {{meetups.location}}</p>
+<p>This was created on {{meetups.created}}</p>
+
+
 
 
 {% endblock content %}
