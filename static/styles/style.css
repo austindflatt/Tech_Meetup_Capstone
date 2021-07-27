@@ -1,7 +1,11 @@
 .main {
-    background-color: #d6d6d6;
+    background-color: #2d3839;
 }
 
-.container  {
-    background: #FFF;
+.bg {
+    background: #3f5653;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 80px;
+    border-radius: 10px;
 }

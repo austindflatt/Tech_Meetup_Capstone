@@ -6,6 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
+from . filters import MeetupFilter, eventsFilter
 
 # Create your views here.
 
@@ -54,8 +57,23 @@ def logout(request):
 
 def homePage(request):
     meetups = Meetup.objects.all()
-    context = {'meetups': meetups}
+
+    homeFilter = MeetupFilter(request.GET, queryset=meetups)
+    meetups = homeFilter.qs
+
+    context = {'meetups': meetups, 'homeFilter': homeFilter}
     return render(request, 'base/home.html', context)
+
+
+@login_required(login_url='login')
+def allMeetups(request):
+    meetups = Meetup.objects.all()
+
+    allEventsFilter = eventsFilter(request.GET, queryset=meetups)
+    meetups = allEventsFilter.qs
+
+    context = {'meetups': meetups, 'allEventsFilter': allEventsFilter}
+    return render(request, 'base/events.html', context)
 
 
 @login_required(login_url='login')
