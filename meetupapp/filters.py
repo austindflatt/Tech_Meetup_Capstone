@@ -6,7 +6,7 @@ class MeetupFilter(django_filters.FilterSet):
     class Meta:
         model = Meetup
         fields = '__all__'
-        exclude = ['title', 'thumbnail', 'description', 'slug', 'id', 'created']
+        exclude = ['title', 'thumbnail', 'description', 'slug', 'id', 'created', 'followers', 'event_views', 'creator']
 
 
 class eventsFilter(django_filters.FilterSet):

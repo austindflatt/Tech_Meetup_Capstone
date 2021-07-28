@@ -1,34 +1,23 @@
-<header class="p-3 bg-dark text-white">
+<header class="p-3 bg-dark text-white" style="background-color: #405653!important;">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
-            <li><a href="{% url 'events' %}" class="nav-link px-2 text-secondary">Events</a></li>
-            <li><a href="#" class="nav-link px-2 text-secondary">Jobs</a></li>
+          <li><a href="/" class="nav-link px-2 text-secondary" style="color: #ffffff!important;">Home</a></li>
+            <li><a href="{% url 'events' %}" class="nav-link px-2 text-secondary" style="color: #ffffff!important;">Events</a></li>
+            <li><a href="{% url 'jobs' %}" class="nav-link px-2 text-secondary" style="color: #ffffff!important;">Jobs</a></li>
         </ul>
-
-          {% if user.is_superuser %}
-          <div class="dropdown text-end">
-          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownAdmin" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://freepikpsd.com/media/2019/10/default-user-profile-image-png-6-Transparent-Images.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
-          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-            <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
-            <li><a class="dropdown-item" href="#">Add a job</a></li>
-            <li><a class="dropdown-item" href="{% url 'add-event' %}">Add event</a></li>
-            <li><a class="dropdown-item" href="/profile">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-          </ul>
-        </div>
-        {% endif %}
-        {% if request.user.groups.all.0.name == 'Member' %}
+        {% if user.is_authenticated %}
         <div class="dropdown text-end">
-          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownMember" data-bs-toggle="dropdown" aria-expanded="false">
+          <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownMember" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://freepikpsd.com/media/2019/10/default-user-profile-image-png-6-Transparent-Images.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            | Welcome {{ user.get_username }}
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+            {% if user.is_superuser %}
+            <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
+            {% endif %}
             <li><a class="dropdown-item" href="{% url 'add-event' %}">Add event</a></li>
+            <li><a class="dropdown-item" href="{% url 'add-job' %}">Add new job</a></li>
             <li><a class="dropdown-item" href="/profile">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
@@ -37,11 +26,11 @@
         {% endif %}
         {% if request.user.groups.all.0.name == 'Employer' %}
         <div class="dropdown text-end">
-          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownEmployer" data-bs-toggle="dropdown" aria-expanded="false">
+          <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownEmployer" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="/profile_pic.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-            <li><a class="dropdown-item" href="{% url 'add-event' %}">Add new job</a></li>
+            <li><a class="dropdown-item" href="{% url 'add-job' %}">Add new job</a></li>
             <li><a class="dropdown-item" href="/profile">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>

@@ -8,19 +8,18 @@
     <button class="btn btn-primary" type="submit">Search</button>
 </form>-->
 
-<h1>All Events</h1>
+<h1 class="display-3" style="color: #FFF; ">All Events</h1>
 
 <div class="row justify-content-center">
     {% for meetup in meetups %}
 <div class="col-sm-3 col-md-3 g-4">
-    <div class="card" style="width: 18rem;box-shadow: rgb(0 0 0 / 22%) 0px 0px 10px;border: 0px solid rgba(0,0,0,.125);">
-  <img src="{{meetup.thumbnail.url}}" class="card-img-top" style="height: 171px;" alt="...">
+    <div class="card" style="width: 18rem;box-shadow: rgb(0 0 0 / 22%) 0px 0px 10px;border: 0px solid rgba(0,0,0,.125); background-color: #2d3839; color: #FFF;">
+  <a href="{% url 'event' meetup.id %}"><img src="{{meetup.thumbnail.url}}" class="card-img-top" style="height: 171px; background-color: #2d3839;" alt="..."></a>
   <div class="card-body">
     <h5 class="card-title">{{meetup.title}}</h5>
     <p class="card-text">{{meetup.meetup_date}}</p>
-      <p class="card-text">{people going will go here}</p>
+      <p class="card-text">{{ total_people }} people are going</p>
       <p class="card-text"><span class="badge bg-dark">{{meetup.topic}}</span></p>
-    <a href="{% url 'event' meetup.id %}" class="btn btn-primary">View details</a>
   </div>
 </div>
 </div>

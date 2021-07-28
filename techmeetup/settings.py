@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'meetupapp.apps.MeetupappConfig',
-    'django_filters'
+    'django_filters',
+    'tempus_dominus'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,6 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images/thumbnails')
+
+
+GOOGLE_MAPS_API_KEY = ['AIzaSyBa5U0Bl4Oe_jQm1VmgJ-JpvAyR_O7X02o']

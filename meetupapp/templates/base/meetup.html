@@ -3,21 +3,169 @@
 {% load static %}
 {% block content %}
 
-<h3>Event page</h3>
+              <div class="col-md-10 ">
+    <div class="row ">
+        <div class="col-xl-3 col-lg-6">
+            <div class="card l-bg-green-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Attendees</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                {{ total_people }}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card l-bg-orange-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-eye"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Views</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                {{meetups.event_views}}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card l-bg-blue-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-city"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Location</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                {{meetups.location}}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card l-bg-red-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-code"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Topic</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                {{meetups.topic}}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+            </div>
+<hr>
 
-<a href="{% url 'edit-event' meetups.id %}">Edit</a>
-<a href="{% url 'delete-event' meetups.id %}">Delete Project</a>
+<section class="section event-section gray-bg" id="event">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-lg-6">
+                        <div class="event-text go-to">
+                            <h1 class="display-3" style="color: #FFF; ">{{meetups.title}}</h1>
+                            <p>This was added on {{meetups.created}} by {{ meetups.creator }}</p>
+                            <p>{{meetups.description}}</p>
+                            {% if user.is_authenticated %}
+                            {% if user.id == meetups.creator.id %}
+                            <a href="{% url 'edit-event' meetups.id %}" class="btn btn-warning me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+</svg></a>
+                            <a href="{% url 'delete-event' meetups.id %}" class="btn btn-danger me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg></a>
+                            {% endif %}
+                            {% endif %}
+                            <hr>
+                            <div class="row event-list">
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label>Meetup Date</label>
+                                        <p>{{meetups.meetup_date}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        {% if user.id != post.author.id %}
+                            {% if user.is_authenticated %}
+                            <form action="{% url 'going' meetups.id %}" method="POST">
+                            {% csrf_token %}
+                            {% if followed %}
+                            <p>You're going to this event ✅</p>
+                            <button type="submit" name="meetup_id" value="{{ meetups.id }}" class="btn btn-lg btn-outline-warning me-2">Change your mind?</button>
+                            {% else %}
+                            <button type="submit" name="meetup_id" value="{{ meetups.id }}" class="btn btn-lg btn-outline-light me-2">Attend Event</button>
+                            {% endif %}
+                            </form>
+                            {% endif %}
+                            {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="event-image">
+                            <img src="{{meetups.thumbnail.url}}" title="{{meetups.title}}" alt="{{meetups.title}}" style="border-radius: 4px; box-shadow: rgb(0 0 0 / 22%) 0px 0px 10px;">
+                        </div>
+                    </div>
+        </section>
+<hr>
+ <h1 class="display-3" style="color: #FFF; ">Location</h1>
+<iframe width="100%" height="500" style="border-radius: 4px;" loading="lazy" allowfullscreen
+src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJEdVbsxoLaYgRMv1xICi009Q&key=AIzaSyBa5U0Bl4Oe_jQm1VmgJ-JpvAyR_O7X02o"></iframe>
 
+<hr>
+ <h1 class="display-3" style="color: #FFF; ">Attendees</h1>
 
-<h1>{{meetups.title}}</h1>
-<img src="{{meetups.thumbnail.url}}">
-<p>Topic being discussed: {{meetups.topic}}</p>
-<p>{{meetups.description}}</p>
-<p>This meetup is on: {{meetups.meetup_date}}</p>
-<p>Location: {{meetups.location}}</p>
-<p>This was created on {{meetups.created}}</p>
+<div class="row bootstrap snippets bootdeys">
+</div>
+<div class="member-entry">
+    <a href="/profile/" class="member-img">
+        <img src="https://freepikpsd.com/media/2019/10/default-user-profile-image-png-6-Transparent-Images.png" class="img-rounded">
+        <i class="fa fa-forward"></i>
+    </a>
+    <div class="member-details">
+        <h4>Username Here</h4>
+        <div class="row info-list">
+            <div class="col-sm-4">
+                First Name: @user
+            </div>
+            <div class="col-sm-4">
+                First Name: @user
+            </div>
+            <div class="clear"></div>
+            <div class="col-sm-4">
+                Email: @user
+            </div>
+            <div class="col-sm-4">
+                LinkedIn: @user
+            </div>
+        </div>
+    </div>
+</div>
 
-
-
+{% for user in meetup.followers %}
+{{ username }}
+{% endfor %}
 
 {% endblock content %}

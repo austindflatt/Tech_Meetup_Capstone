@@ -1,1 +1,29 @@
-<h1>Test</h1>
+{% extends 'base/main.html' %}
+{% block title %} devConnect {% endblock %}
+{% load static %}
+{% block content %}
+
+<!--<form method="get">
+    {{eventsFilter.form}}
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>-->
+
+<h1 class="display-3" style="color: #FFF; ">Jobs</h1>
+
+<div class="row justify-content-center">
+    {% for job in jobs %}
+<div class="col-sm-3 col-md-3 g-4">
+    <div class="card" style="width: 18rem;box-shadow: rgb(0 0 0 / 22%) 0px 0px 10px;border: 0px solid rgba(0,0,0,.125); background-color: #2d3839; color: #FFF;">
+  <div class="card-body">
+    <h5 class="card-title">{{job.title}}</h5>
+      <p class="card-text">{{job.company}}</p>
+    <a href="{% url 'job' job.id %}" class="btn btn-outline-light">View details</a>
+  </div>
+</div>
+</div>
+    {% empty %}
+    <h3>No jobs have been added yet</h3>
+    {% endfor %}
+</div>
+
+{% endblock content %}

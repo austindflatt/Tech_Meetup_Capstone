@@ -1,17 +1,17 @@
 {% extends 'base/main.html' %}
-{% block title %} Add Event - devConnect {% endblock %}
+{% block title %} Add Job - devConnect {% endblock %}
 {% load static %}
 {% block content %}
 
-            <h1 class="splash-title">Add Event 📍</h1>
+            <h1 class="splash-title">Add Job</h1>
             <form method="POST" enctype="multipart/form-data" class="add-content">
               {% csrf_token %}
               {% for field in form %}
-              <label for="project" class="add-content-label">{{field.label}}</label><br>
+              <label for="..." class="add-content-label">{{field.label}}</label><br>
               {{field}}<br>
               {% endfor %}
               <br>
-              <input class="button button-submit" type="submit" value="Create Meetup">
+              <input class="button button-submit" type="submit" value="Post Job">
             </form>
 
 {% endblock content %}
