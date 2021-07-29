@@ -19,22 +19,10 @@ class MeetupForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(MeetupForm, self).__init__(*args, **kwargs)
         self.fields['title'].widget.attrs.update(
-            {'class': 'form-control'}
-        )
-        self.fields['thumbnail'].widget.attrs.update(
-            {'class': 'form-control'}
-        )
-        self.fields['topic'].widget.attrs.update(
-            {'class': 'form-control'}
-        )
-        self.fields['description'].widget.attrs.update(
-            {'class': 'form-control'}
-        )
-        self.fields['city'].widget.attrs.update(
-            {'class': 'form-control'}
+            {'class': ''}
         )
         self.fields['meetup_date'].widget.attrs.update(
-            {'class': 'form-control',
+            {'class': '',
              'type': 'datetime-local'}
         )
 
@@ -47,14 +35,5 @@ class JobForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(JobForm, self).__init__(*args, **kwargs)
         self.fields['title'].widget.attrs.update(
-            {'class': 'form-control'}
-        )
-        self.fields['company'].widget.attrs.update(
-            {'class': 'form-control'}
-        )
-        self.fields['description'].widget.attrs.update(
-            {'class': 'form-control'}
-        )
-        self.fields['location'].widget.attrs.update(
-            {'class': 'form-control'}
+            {'class': ''}
         )

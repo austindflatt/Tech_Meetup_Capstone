@@ -23,7 +23,7 @@ class Meetup(models.Model):
     followers = models.ManyToManyField(User, related_name="meetuppost")
     created = models.DateTimeField(auto_now_add=True)
     event_views = models.IntegerField(default=0)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=User)
     slug = models.SlugField(null=True, blank=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 

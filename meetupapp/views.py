@@ -114,7 +114,7 @@ def addEvent(request):
         form = MeetupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('events')
     context = {'form': form}
     return render(request, 'base/meetup_form.html', context)
 
@@ -127,7 +127,7 @@ def editEvent(request, pk):
         form = MeetupForm(request.POST, request.FILES, instance=event)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('events')
     context = {'form': form}
     return render(request, 'base/meetup_form.html', context)
 

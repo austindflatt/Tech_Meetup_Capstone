@@ -3,23 +3,34 @@
 {% load static %}
 {% block content %}
 
-<h3>Register page</h3>
+<h4 class="display-3" style="color: #FFF; ">Register an account</h4>
+<br/>
 
 <form method="POST" action="">
     {% csrf_token %}
-    {{form.username.label}}
+    <div class="row">
+    <div class="col">
+    <label for="username" class="label">{{form.username.label}}</label><br>
     {{form.username}}
-
-    {{form.email.label}}
+    </div>
+        <div class="col">
+    <label for="email" class="label">{{form.email.label}}</label><br>
     {{form.email}}
-
-    {{form.password1.label}}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+    <div class="col">
+    <label for="password1" class="label">{{form.password1.label}}</label><br>
     {{form.password1}}
-
-    {{form.password2.label}}
+    </div>
+        <div class="col">
+    <label for="password2" class="label">{{form.password2.label}}</label><br>
     {{form.password2}}
-
-    <input type="submit" name="Create Account">
+        </div>
+    </div>
+    <br/></br>
+    <input type="submit" name="Create Account" value="Create Account">
 
 </form>
 
