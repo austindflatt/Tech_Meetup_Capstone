@@ -8,6 +8,23 @@
     <button class="btn btn-primary" type="submit">Search</button>
 </form>-->
 
+<div id='map' style='width: 100%; height: 500px; border-radius: 4px; box-shadow: rgb(0 0 0 / 22%) 0px 0px 10px;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiYXVzdGluZmxhdHQiLCJhIjoiY2tyb2V3Z25pMmh4eDJvbzR5YWF2a2dyZiJ9.-95eK2-4NVM6Vi_CZ8ShDA';
+var map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/austinflatt/ckrofzdq15ook19nfo2nmos00', // style URL
+    center: [-90.5, 40], // starting position [lng, lat]
+    zoom: 3 // starting zoom
+});
+{% for meetups in meetups %}
+var marker = new mapboxgl.Marker()
+  .setLngLat([{{ meetups.long }}, {{ meetups.lat }}])
+  .setPopup(new mapboxgl.Popup().setHTML("<h4>{{meetups.title}}</h4><p>{{meetups.meetup_date}}</p><p>{{meetups.address}}</p>"))
+  .addTo(map);
+{% endfor %}
+</script>
+
 <h1 class="display-3" style="color: #FFF; ">All Events</h1>
 
 <div class="row justify-content-center">

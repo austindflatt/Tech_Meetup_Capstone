@@ -49,7 +49,7 @@
                     <div class="row align-items-center mb-2 d-flex">
                         <div class="col-8">
                             <h2 class="d-flex align-items-center mb-0">
-                                {{meetups.location}}
+                                {{meetups.city}}
                             </h2>
                         </div>
                     </div>
@@ -82,7 +82,8 @@
                     <div class="col-lg-6">
                         <div class="event-text go-to">
                             <h1 class="display-3" style="color: #FFF; ">{{meetups.title}}</h1>
-                            <p>This was added on {{meetups.created}} by {{ meetups.creator }}</p>
+                            <p>Hosted by {{ meetups.creator }}</p>
+                            <p>Added on {{meetups.created}}</p>
                             <p>{{meetups.description}}</p>
                             {% if user.is_authenticated %}
                             {% if user.id == meetups.creator.id %}
@@ -99,7 +100,7 @@
                             <div class="row event-list">
                                 <div class="col-md-6">
                                     <div class="media">
-                                        <label>Meetup Date</label>
+                                        <label>When Is It?</label>
                                         <p>{{meetups.meetup_date}}</p>
                                     </div>
                                 </div>
@@ -131,8 +132,21 @@
         </section>
 <hr>
  <h1 class="display-3" style="color: #FFF; ">Location</h1>
-<iframe width="100%" height="500" style="border-radius: 4px;" loading="lazy" allowfullscreen
-src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJEdVbsxoLaYgRMv1xICi009Q&key=AIzaSyBa5U0Bl4Oe_jQm1VmgJ-JpvAyR_O7X02o"></iframe>
+
+<div id='map' style='width: 100%; height: 500px; border-radius: 4px; box-shadow: rgb(0 0 0 / 22%) 0px 0px 10px;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiYXVzdGluZmxhdHQiLCJhIjoiY2tyb2V3Z25pMmh4eDJvbzR5YWF2a2dyZiJ9.-95eK2-4NVM6Vi_CZ8ShDA';
+var map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/austinflatt/ckrofzdq15ook19nfo2nmos00', // style URL
+    center: [{{ meetups.long }}, {{ meetups.lat }}], // starting position [lng, lat]
+    zoom: 13 // starting zoom
+});
+var marker = new mapboxgl.Marker()
+  .setLngLat([{{ meetups.long }}, {{ meetups.lat }}])
+  .setPopup(new mapboxgl.Popup().setHTML("<h4>{{meetups.title}}</h4><p>{{meetups.meetup_date}}</p><p>{{meetups.address}}</p>"))
+  .addTo(map);
+</script>
 
 <hr>
  <h1 class="display-3" style="color: #FFF; ">Attendees</h1>

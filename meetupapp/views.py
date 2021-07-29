@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
+from django.views.generic import DetailView
 from . models import Meetup, Job
 from .forms import CreateUserForm, MeetupForm, JobForm
 from django.contrib.auth.forms import UserCreationForm
