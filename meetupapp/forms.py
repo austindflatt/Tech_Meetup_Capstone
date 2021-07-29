@@ -14,7 +14,7 @@ class CreateUserForm(UserCreationForm):
 class MeetupForm(ModelForm):
     class Meta:
         model = Meetup
-        fields = ['title', 'thumbnail', 'topic', 'description', 'city', 'address', 'meetup_date', 'creator']
+        fields = ['title', 'thumbnail', 'topic', 'description', 'city', 'address', 'meetup_date', 'end_date', 'creator']
 
     def __init__(self, *args, **kwargs):
         super(MeetupForm, self).__init__(*args, **kwargs)

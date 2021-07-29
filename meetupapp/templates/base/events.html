@@ -20,7 +20,7 @@ var map = new mapboxgl.Map({
 {% for meetups in meetups %}
 var marker = new mapboxgl.Marker()
   .setLngLat([{{ meetups.long }}, {{ meetups.lat }}])
-  .setPopup(new mapboxgl.Popup().setHTML("<h4>{{meetups.title}}</h4><p>{{meetups.meetup_date}}</p><p>{{meetups.address}}</p>"))
+  .setPopup(new mapboxgl.Popup().setHTML("<h4>{{meetups.title}}</h4><p>{{meetups.meetup_date}} to {{meetups.end_date}}</p><p>{{meetups.address}}</p>"))
   .addTo(map);
 {% endfor %}
 </script>

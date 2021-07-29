@@ -20,6 +20,7 @@ class Meetup(models.Model):
     lat = models.FloatField(blank=True, null=True)
     long = models.FloatField(blank=True, null=True)
     meetup_date = models.DateTimeField()
+    end_date = models.TimeField()
     followers = models.ManyToManyField(User, related_name="meetuppost")
     created = models.DateTimeField(auto_now_add=True)
     event_views = models.IntegerField(default=0)
