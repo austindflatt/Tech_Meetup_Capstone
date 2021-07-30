@@ -15,7 +15,7 @@ var map = new mapboxgl.Map({
 {% for job in jobs %}
 var marker = new mapboxgl.Marker()
   .setLngLat([{{ job.long }}, {{ job.lat }}])
-  .setPopup(new mapboxgl.Popup().setHTML("<h4>{{job.title}}</h4><p>{{job.address}}</p>"))
+  .setPopup(new mapboxgl.Popup().setHTML("<h4>{{job.title}}</h4><p>Company: {{job.company}}</p><p>{{job.type}}</p><p>{{job.address}}</p>"))
   .addTo(map);
 {% endfor %}
 

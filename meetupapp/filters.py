@@ -4,6 +4,7 @@ from . models import *
 
 
 class MeetupFilter(django_filters.FilterSet):
+    
     class Meta:
         model = Meetup
         fields = '__all__'

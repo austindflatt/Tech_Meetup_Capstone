@@ -29,6 +29,8 @@
   </tbody>
 </table>
 
+<p style="color: #FFF;">{{job.description}}</p>
+
 <hr>
  <h1 class="display-3" style="color: #FFF; ">Location</h1>
 
@@ -43,7 +45,7 @@ var map = new mapboxgl.Map({
 });
 var marker = new mapboxgl.Marker()
   .setLngLat([{{ job.long }}, {{ job.lat }}])
-  .setPopup(new mapboxgl.Popup().setHTML("<h4>{{job.title}}</h4><p>{{job.address}}</p>"))
+  .setPopup(new mapboxgl.Popup().setHTML("<h4>{{job.title}}</h4><p>Company: {{job.company}}</p><p>{{job.type}}</p><p>{{job.address}}</p>"))
   .addTo(map);
 
       // Add geolocate control to the map.
