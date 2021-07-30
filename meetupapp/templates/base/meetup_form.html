@@ -4,14 +4,13 @@
 {% block content %}
 
 
-            <h1 class="display-3" style="color: #FFF; ">Add Event 📍</h1><br/>
+            <h1 class="display-3" style="color: #FFF; ">Add Event 📍</h1>
             <form method="POST" enctype="multipart/form-data" class="add-content">
               {% csrf_token %}
               {% for field in form %}
               <label for="meetup" class="label">{{field.label}}</label><br>
               {{field}}<br>
               {% endfor %}
-              <br>
               <input class="button button-submit" type="submit" value="Create Meetup">
             </form>
 

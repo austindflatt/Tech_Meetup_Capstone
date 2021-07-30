@@ -359,7 +359,24 @@ textarea {
 	transition: 0.2s;
 }
 
-#id_creator, label[for="id_creator"] {
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: 5000s ease-in-out 0s;
+}
+
+#id_creator, label[for="meetup"] {
   position: absolute;
   display: none
+}
+
+#id_creator, label[for="..."] {
+  position: absolute;
+  display: none
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #FFF;
+  opacity: 1; /* Firefox */
 }
