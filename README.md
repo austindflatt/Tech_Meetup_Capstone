@@ -4,7 +4,7 @@ devConnect is an event management system targeted towards software developers & 
 
 ![event](https://raw.githubusercontent.com/austindflatt/Tech_Meetup_Capstone/main/event.png)
 
-![map](https://raw.githubusercontent.com/austindflatt/Tech_Meetup_Capstone/main/map-detail.png)
+![map](https://raw.githubusercontent.com/austindflatt/Tech_Meetup_Capstone/main/map-detail1.png)
 
 ## 🛠 Tools
 
