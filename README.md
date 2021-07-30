@@ -3,6 +3,7 @@
 devConnect is an event management system targeted towards software developers & employers in the software development field.
 
 ![event](https://raw.githubusercontent.com/austindflatt/Tech_Meetup_Capstone/main/event.png)
+![map](https://raw.githubusercontent.com/austindflatt/Tech_Meetup_Capstone/main/map-detail.png)
 
 ## 🛠 Tools
 
