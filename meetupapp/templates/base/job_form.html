@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 
-            <h1 class="splash-title">Add Job</h1>
+             <h1 class="display-3" style="color: #FFF; ">Add Job</h1><br/>
             <form method="POST" enctype="multipart/form-data" class="add-content">
               {% csrf_token %}
               {% for field in form %}
