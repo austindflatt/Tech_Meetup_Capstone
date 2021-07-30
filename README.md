@@ -25,8 +25,6 @@ click==8.0.1
 decorator==5.0.9
 Django==3.1.8
 django-filter==2.4.0
-django-google-maps==0.12.4
-django-tempus-dominus==5.1.2.14
 future==0.18.2
 geocoder==1.38.1
 geographiclib==1.52
