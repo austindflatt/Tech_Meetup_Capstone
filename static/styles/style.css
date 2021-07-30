@@ -380,3 +380,18 @@ input:-webkit-autofill:active {
   color: #FFF;
   opacity: 1; /* Firefox */
 }
+
+/* PopUp */
+/* change background and tip color to green */
+.mapboxgl-popup-content {
+  background: #405653;
+  box-shadow: rgb(0 0 0 / 22%) 0px 0px 10px;
+  color: #FFF;
+}
+.mapboxgl-popup-tip {
+  border-top-color: #405653;
+}
+
+.mapboxgl-popup-close-button {
+  color: #FFF;
+}

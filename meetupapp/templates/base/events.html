@@ -23,6 +23,16 @@ var marker = new mapboxgl.Marker()
   .setPopup(new mapboxgl.Popup().setHTML("<h4>{{meetups.title}}</h4><p>{{meetups.meetup_date}} to {{meetups.end_date}}</p><p>{{meetups.address}}</p>"))
   .addTo(map);
 {% endfor %}
+
+    // Add geolocate control to the map.
+    map.addControl(
+    new mapboxgl.GeolocateControl({
+    positionOptions: {
+    enableHighAccuracy: true
+    },
+    trackUserLocation: true
+    })
+    );
 </script>
 
 <h1 class="display-3" style="color: #FFF; ">All Events</h1>

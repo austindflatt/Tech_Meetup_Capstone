@@ -150,6 +150,16 @@ var marker = new mapboxgl.Marker()
   .setLngLat([{{ meetups.long }}, {{ meetups.lat }}])
   .setPopup(new mapboxgl.Popup().setHTML("<h4>{{meetups.title}}</h4><p>{{meetups.meetup_date}} to {{meetups.end_date}}</p><p>{{meetups.address}}</p>"))
   .addTo(map);
+
+      // Add geolocate control to the map.
+    map.addControl(
+    new mapboxgl.GeolocateControl({
+    positionOptions: {
+    enableHighAccuracy: true
+    },
+    trackUserLocation: true
+    })
+    );
 </script>
 
 <hr>
@@ -157,13 +167,14 @@ var marker = new mapboxgl.Marker()
 
 <div class="row bootstrap snippets bootdeys">
 </div>
+{% for user.id in meetup.followers %}
 <div class="member-entry">
     <a href="/profile/" class="member-img">
         <img src="https://freepikpsd.com/media/2019/10/default-user-profile-image-png-6-Transparent-Images.png" class="img-rounded">
         <i class="fa fa-forward"></i>
     </a>
     <div class="member-details">
-        <h4>Username Here</h4>
+        <h4>{{ user.username }}</h4>
         <div class="row info-list">
             <div class="col-sm-4">
                 First Name: @user
@@ -181,9 +192,6 @@ var marker = new mapboxgl.Marker()
         </div>
     </div>
 </div>
-
-{% for user in meetup.followers %}
-{{ username }}
 {% endfor %}
 
 {% endblock content %}

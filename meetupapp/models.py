@@ -46,8 +46,11 @@ class Job(models.Model):
     title = models.CharField(max_length=200)
     company = models.CharField(max_length=100)
     description = models.TextField()
-    location = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+    lat = models.FloatField(blank=True, null=True)
+    long = models.FloatField(blank=True, null=True)
     type = models.CharField(max_length=200)
+    choice = models.CharField(max_length=100)
     link = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(null=True, blank=True)
@@ -55,6 +58,13 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        g = geocoder.mapbox(self.address, key=mapbox_access_token)
+        g = g.latlng
+        self.lat = g[0]
+        self.long = g[1]
+        return super(Job, self).save(*args, **kwargs)
 
 
 class Member(models.Model):

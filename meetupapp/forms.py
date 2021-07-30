@@ -53,7 +53,7 @@ class MeetupForm(ModelForm):
 class JobForm(ModelForm):
     class Meta:
         model = Job
-        fields = ['title', 'company', 'description', 'location', 'type', 'link']
+        fields = ['title', 'company', 'description', 'address', 'type', 'choice', 'link']
 
     def __init__(self, *args, **kwargs):
         super(JobForm, self).__init__(*args, **kwargs)
@@ -66,11 +66,14 @@ class JobForm(ModelForm):
         self.fields['description'].widget.attrs.update(
             {'placeholder': 'Please give a detailed description about this job'}
         )
-        self.fields['location'].widget.attrs.update(
+        self.fields['address'].widget.attrs.update(
             {'placeholder': 'Type an address'}
         )
         self.fields['type'].widget.attrs.update(
             {'placeholder': 'Full time or Part time?'}
+        )
+        self.fields['choice'].widget.attrs.update(
+            {'placeholder': 'Remote or on-site?'}
         )
         self.fields['link'].widget.attrs.update(
             {'placeholder': 'Company website'}

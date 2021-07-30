@@ -1,4 +1,5 @@
 import django_filters
+from django_filters import DateFilter, TimeFilter, CharFilter
 from . models import *
 
 
