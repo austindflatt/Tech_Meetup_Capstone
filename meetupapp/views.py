@@ -86,7 +86,6 @@ def logout(request):
     return redirect('home')
 
 
-@login_required(login_url='login')
 def homePage(request):
     meetups = Meetup.objects.all()
 
