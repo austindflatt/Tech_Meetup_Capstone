@@ -4,11 +4,20 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Meetup, Job
 
+USER_CHOICES= [
+    ('member', 'MEMBER'),
+    ('employer', 'EMPLOYER'),
+    ]
+
 
 class CreateUserForm(UserCreationForm):
+    first_name = forms.CharField(max_length=100)
+    last_name = forms.CharField(max_length=100)
+    group = forms.CharField(label='Select an account type', widget=forms.Select(choices=USER_CHOICES))
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name', 'group', 'email', 'password1', 'password2']
 
 
 class MeetupForm(ModelForm):

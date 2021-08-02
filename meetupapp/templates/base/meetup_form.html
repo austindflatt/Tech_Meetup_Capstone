@@ -14,4 +14,13 @@
               <input class="button button-submit" type="submit" value="Create Meetup">
             </form>
 
+            <script>
+            var onLoaded = function() {
+               // I am assuming your field has id of where_load, it might be different
+                var location_input = document.getElementById('address');
+                var autocomplete = new google.maps.places.Autocomplete(location_input);
+
+            }
+            </script>
+
 {% endblock content %}

@@ -35,10 +35,29 @@ var marker = new mapboxgl.Marker()
     );
 </script>
 {% endif %}
-
+<br/>
 <form method="get">
-    {{homeFilter.form}}
-    <br/><br/>
+    <div class="row">
+    <div class="col">
+        <label for="topic" class="label">Search by topic</label><br>
+    {{homeFilter.form.topic}}
+    </div>
+        <div class="col">
+            <label for="city" class="label">City</label><br>
+    {{homeFilter.form.city}}
+        </div>
+    </div><br/>
+    <div class="row">
+    <div class="col">
+        <label for="start_date" class="label">Start Date</label><br>
+    {{homeFilter.form.meetup_date}}
+    </div>
+        <div class="col">
+            <label for="end_date" class="label">End Time</label><br>
+    {{homeFilter.form.end_date}}
+        </div>
+    </div>
+    <br/>
     <input type="submit" value="Find Events">
 </form>
 
@@ -52,7 +71,6 @@ var marker = new mapboxgl.Marker()
   <div class="card-body">
     <h5 class="card-title">{{meetup.title}}</h5>
     <p class="card-text">{{meetup.meetup_date}}</p>
-      <p class="card-text">{{ total_people }} attendee</p>
       <p class="card-text"><span class="badge bg-dark">{{meetup.topic}}</span></p>
   </div>
 </div>

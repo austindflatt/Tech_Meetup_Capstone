@@ -4,7 +4,7 @@ from django.views.generic import DetailView
 from . models import Meetup, Job
 from .forms import CreateUserForm, MeetupForm, JobForm
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -14,6 +14,13 @@ from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
 # Create your views here.
+
+
+def MeetupViews(request, pk):
+    meetup_object = Meetup.objects.get(id=pk)
+    meetup_object.event_views = meetup_object.event_views + 1
+    meetup_object.save()
+    return meetup_object.event_views(request.user)
 
 
 def GoToMeetup(request, pk):
@@ -28,6 +35,15 @@ def GoToMeetup(request, pk):
     return HttpResponseRedirect(reverse('event', args=[str(pk)]))
 
 
+@login_required(login_url='login')
+def showUsers(request):
+    all_users = get_user_model().objects.all()
+
+    context = {'allusers': all_users}
+
+    return render(request, 'members/users.html', context)
+
+
 def registerPage(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -38,7 +54,7 @@ def registerPage(request):
             if form.is_valid():
                 form.save()
                 user = form.cleaned_data.get('username')
-                messages.success(request, 'Account was created for ' + user + '!')
+                messages.success(request, 'Welcome to devConnect! Account was created for ' + user + '!')
 
                 return redirect('home')
         context = {'form':form}
@@ -70,6 +86,7 @@ def logout(request):
     return redirect('home')
 
 
+@login_required(login_url='login')
 def homePage(request):
     meetups = Meetup.objects.all()
 
@@ -173,7 +190,7 @@ def addJob(request):
 @login_required(login_url='login')
 def editJob(request, pk):
     job = Job.objects.get(id=pk)
-    form = MeetupForm(instance=job)
+    form = JobForm(instance=job)
     if request.method == 'POST':
         form = JobForm(request.POST, request.FILES, instance=job)
         if form.is_valid():

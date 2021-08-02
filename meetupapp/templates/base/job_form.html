@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 
-             <h1 class="display-3" style="color: #FFF; ">Add Job</h1>
+             <h1 class="display-3" style="color: #FFF; ">Add Job 📌</h1>
             <form method="POST" enctype="multipart/form-data" class="add-content">
               {% csrf_token %}
               {% for field in form %}
@@ -13,5 +13,7 @@
               <br>
               <input class="button button-submit" type="submit" value="Post Job">
             </form>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBa5U0Bl4Oe_jQm1VmgJ-JpvAyR_O7X02o&libraries=places&callback=onLoaded" async defer></script>
 
 {% endblock content %}

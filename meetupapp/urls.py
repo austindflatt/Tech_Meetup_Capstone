@@ -7,6 +7,7 @@ urlpatterns = [
     path('events/', views.allMeetups, name="events"),
     path('jobs/', views.allJobs, name="jobs"),
     path('going/<str:pk>', views.GoToMeetup, name="going"),
+    path('users/', views.showUsers, name="users"),
 
     path('register/', views.registerPage, name="register"),
     path('login/', views.loginPage, name="login"),

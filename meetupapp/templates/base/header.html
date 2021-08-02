@@ -5,6 +5,7 @@
           <li><a href="/" class="nav-link px-2 text-secondary" style="color: #ffffff!important;">Home</a></li>
             <li><a href="{% url 'events' %}" class="nav-link px-2 text-secondary" style="color: #ffffff!important;">Events</a></li>
             <li><a href="{% url 'jobs' %}" class="nav-link px-2 text-secondary" style="color: #ffffff!important;">Jobs</a></li>
+          <li><a href="{% url 'users' %}" class="nav-link px-2 text-secondary" style="color: #ffffff!important;">Members</a></li>
         </ul>
         {% if user.is_authenticated %}
         <div class="dropdown text-end">
@@ -12,15 +13,15 @@
             <img src="https://freepikpsd.com/media/2019/10/default-user-profile-image-png-6-Transparent-Images.png" alt="mdo" width="32" height="32" class="rounded-circle">
             | Welcome {{ user.get_username }}
           </a>
-          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="background-color: #405653;">
             {% if user.is_superuser %}
-            <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
+            <li><a class="dropdown-item" href="{% url 'admin:index' %}" style="color: #FFF;">Admin</a></li>
             {% endif %}
-            <li><a class="dropdown-item" href="{% url 'add-event' %}">Add event</a></li>
-            <li><a class="dropdown-item" href="{% url 'add-job' %}">Add new job</a></li>
-            <li><a class="dropdown-item" href="{% url 'logout' %}">Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'add-event' %}" style="color: #FFF;">Add event</a></li>
+            <li><a class="dropdown-item" href="{% url 'add-job' %}" style="color: #FFF;">Add new job</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}" style="color: #FFF;">Edit Profile</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}" style="color: #FFF;">Logout</a></li>
           </ul>
         </div>
         {% endif %}

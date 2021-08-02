@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 mapbox_access_token = 'pk.eyJ1IjoiYXVzdGluZmxhdHQiLCJhIjoiY2tyb2Y3YXpjMnBlNTJ1cDZlN2V2bGc4biJ9.3g_h6Pit7Y2VWalrOPxMow'
 
 
@@ -16,14 +17,14 @@ class Meetup(models.Model):
     topic = models.CharField(max_length=100)
     description = models.TextField()
     city = models.CharField(max_length=200)
-    address = models.TextField()
+    address = models.CharField(max_length=400)
     lat = models.FloatField(blank=True, null=True)
     long = models.FloatField(blank=True, null=True)
     meetup_date = models.DateTimeField()
     end_date = models.TimeField()
     followers = models.ManyToManyField(User, related_name="meetuppost")
     created = models.DateTimeField(auto_now_add=True)
-    event_views = models.IntegerField(default=0)
+    event_views = models.IntegerField(default=0, null=True, blank=True)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=User)
     slug = models.SlugField(null=True, blank=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
